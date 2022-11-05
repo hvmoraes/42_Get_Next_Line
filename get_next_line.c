@@ -3,77 +3,65 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 09:52:46 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/10/25 10:34:53 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/11/05 07:28:44 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <fcntl.h>
+#include <stdio.h>
 
-char	*line(int fd, char **matrix)
+char	*ft_read_to_left_str(int fd, char *left_str)
 {
-	int		i;
-	char	*temp;
-	char	*result;
+	char	*buff;
+	int		rd_bytes;
 
-	i = 0;
-	while (matrix[fd][i] != '\n' && matrix[fd][i])
-		i++;
-	if (matrix[fd][i] == '\n')
+	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
+	if (!buff)
+		return (NULL);
+	rd_bytes = 1;
+	while (!ft_strchr(left_str, '\n') && rd_bytes != 0)
 	{
-		result = ft_substr(matrix[fd], 0, i);
-		temp = ft_substr(matrix[fd], i + 1, ft_strlen(matrix[fd]) - i - 1);
-		free(matrix[fd]);
-		matrix[fd] = temp;
-		return (result);
+		rd_bytes = read(fd, buff, BUFFER_SIZE);
+		if (rd_bytes == -1)
+		{
+			free(buff);
+			return (NULL);
+		}
+		buff[rd_bytes] = '\0';
+		left_str = ft_strjoin(left_str, buff);
 	}
-	else
-	{
-		result = ft_strdup(matrix[fd]);
-		free(matrix[fd]);
-		matrix[fd] = NULL;
-		return (result);
-	}
+	free(buff);
+	return (left_str);
 }
 
 char	*get_next_line(int fd)
 {
-	int			i;
-	char		buffer[BUFFER_SIZE + 1];
-	char		*temp;
-	static char	*matrix[4096];
+	char		*line;
+	static char	*left_str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
+		return (0);
+	left_str = ft_read_to_left_str(fd, left_str);
+	if (!left_str)
 		return (NULL);
-	i = read(fd, buffer, BUFFER_SIZE);
-	while (i > 0)
-	{
-		buffer[i] = '\0';
-		if (!matrix[fd])
-			matrix[fd] = ft_strdup("");
-		temp = ft_strjoin(matrix[fd], buffer);
-		free(matrix[fd]);
-		matrix[fd] = temp;
-		if (ft_strchr(matrix[fd], '\n'))
-			break ;
-		i = read(fd, buffer, BUFFER_SIZE);
-	}
-	if (!matrix[fd] || i < 0)
-		return (NULL);
-	return (line(fd, matrix));
+	line = ft_get_line(left_str);
+	left_str = ft_new_left_str(left_str);
+	return (line);
 }
 
-int main()
+/*int	main(void)
 {
-    int     fd;
-    char    *str;
-    FILE    *file;
+	int	fd;
 
-    file = fopen("test.txt", "r");
-    fd = fileno(file);
-    while ((str = get_next_line(fd)))
-        printf("%s\n", str);
-    return (0);
-}
+    fd = open("get_next_line.c", O_RDONLY);
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	printf("%s", get_next_line(fd));
+	close(fd);
+	return (0);
+}*/
