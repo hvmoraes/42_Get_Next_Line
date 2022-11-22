@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 09:52:46 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/17 13:57:29 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/11/22 16:26:04 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ char	*get_next_line(int fd)
 	return (line);
 }
 
-int	main(void)
+/*int	main(void)
 {
 	int		fd;
 	char	*str;
@@ -125,4 +125,4 @@ int	main(void)
 	printf("\n%i Lines\n", i);
 	close(fd);
 	return (0);
-}
+}*/
