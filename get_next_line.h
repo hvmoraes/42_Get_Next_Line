@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/28 15:09:38 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/14 15:29:34 by hcorrea-         ###   ########.fr       */
+/*   Created: 2022/11/15 09:19:44 by hcorrea-          #+#    #+#             */
+/*   Updated: 2022/11/17 12:14:31 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,5 @@ char	*ft_strchr(char *s, int c);
 char	*ft_strjoin(char *s1, char *s2);
 size_t	ft_strlen(char *s);
 char	*ft_strdup(const char *s1);
-char	*ft_substr(const char *str, unsigned int start, size_t len);
 
 #endif

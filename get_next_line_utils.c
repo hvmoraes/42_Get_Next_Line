@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_utils.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hcorrea- <hcorrea-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 10:23:31 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/14 15:30:40 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/11/17 12:14:20 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,27 +44,29 @@ char	*ft_strchr(char *s, int c)
 
 char	*ft_strjoin(char *s1, char *s2)
 {
+	size_t	i;
+	size_t	j;
 	char	*result;
-	int		i;
-	int		j;
 
-	i = 0;
-	if (!(s1 || s2))
-		return (0);
-	result = (char *)malloc(ft_strlen((char *)s1) + ft_strlen((char *)s2) + 1);
-	if (!result)
-		return (0);
-	j = 0;
-	while (s1[i])
+	if (!s1)
 	{
-		result[i] = s1[j];
-		i++;
-		j++;
+		s1 = (char *)malloc(1 * sizeof(char));
+		s1[0] = '\0';
 	}
+	if (!s1 || !s2)
+		return (NULL);
+	result = malloc(sizeof(char) * ((ft_strlen(s1) + ft_strlen(s2)) + 1));
+	if (result == NULL)
+		return (NULL);
+	i = -1;
 	j = 0;
-	while (s2[j])
+	if (s1)
+		while (s1[++i] != '\0')
+			result[i] = s1[i];
+	while (s2[j] != '\0')
 		result[i++] = s2[j++];
-	result[i] = '\0';
+	result[ft_strlen(s1) + ft_strlen(s2)] = '\0';
+	free(s1);
 	return (result);
 }
 
@@ -82,34 +84,5 @@ char	*ft_strdup(const char *str)
 		result[i] = str[i];
 		i++;
 	}
-	return (result);
-}
-
-char	*ft_substr(const char *str, unsigned int start, size_t len)
-{
-	char	*result;
-	size_t	i;
-	size_t	j;
-
-	i = start;
-	j = 0;
-	if (!str)
-		return (0);
-	if (start >= ft_strlen((char *)str))
-	{
-		result = malloc(1);
-		if (!result)
-			return (0);
-		*result = '\0';
-		return (result);
-	}
-	if (len > ft_strlen((char *)str))
-		return (ft_strdup((char *)str + start));
-	result = (char *)malloc(len + 1);
-	if (!result)
-		return (0);
-	while (j < len && i < ft_strlen((char *)str))
-		result[j++] = str[i++];
-	result[j] = '\0';
 	return (result);
 }
