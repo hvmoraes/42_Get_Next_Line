@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:05:38 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/17 12:17:02 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/01/03 09:38:18 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <fcntl.h>
 # include <stdio.h>
 
 # ifndef BUFFER_SIZE

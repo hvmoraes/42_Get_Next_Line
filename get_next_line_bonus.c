@@ -6,13 +6,11 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/28 15:04:58 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/17 13:49:20 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2023/01/03 09:38:27 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <fcntl.h>
-#include <stdio.h>
+#include "get_next_line_bonus.h"
 
 char	*ft_line(char *matrix)
 {

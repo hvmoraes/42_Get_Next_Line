@@ -6,7 +6,7 @@
 /*   By: hcorrea- <hcorrea-@student.42lisboa.pt>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/25 09:52:46 by hcorrea-          #+#    #+#             */
-/*   Updated: 2022/11/22 16:26:04 by hcorrea-         ###   ########.fr       */
+/*   Updated: 2022/11/29 10:11:51 by hcorrea-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,7 +114,7 @@ char	*get_next_line(int fd)
 	int		i;
 
 	i = 0;
-	fd = open("test.txt", O_RDONLY);
+	fd = open("tests.txt", O_RDONLY);
 	while ((str = get_next_line(fd)) && str)
 	{
 		printf("%s", str);
@@ -122,7 +122,7 @@ char	*get_next_line(int fd)
 		i++;
 	}
 	free(str);
-	printf("\n%i Lines\n", i);
+	printf("\n%i Lines.\n", i);
 	close(fd);
 	return (0);
 }*/
